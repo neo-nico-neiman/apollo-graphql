@@ -1,26 +1,26 @@
 const { gql } = require("apollo-server");
 
 const typeDefs = gql`
-type Query {
+  type Query {
     "Query to get tracks array for the homepage grid"
     tracksForHome: [Track!]!
-}
+  }
 
-"A track is a group of Modules that teaches about a specific topic"
-    type Author {
-        id: ID!
-        name: String!
-        photo: String
-    }
+  "A track is a group of Modules that teaches about a specific topic"
+  type Author {
+    id: ID!
+    name: String!
+    photo: String
+  }
 
-    type Track {
-        id: ID!
-        title: String!
-        author: Author!
-        thumbnail: String
-        length: interface
-        modulesCount: INT {
-        }
-    }
+  type Track {
+    id: ID!
+    title: String!
+    author: Author!
+    thumbnail: String
+    length: Int
+    modulesCount: Int
+  }
 `;
+
 module.exports = typeDefs;
