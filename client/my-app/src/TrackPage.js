@@ -32,7 +32,21 @@ const TrackPage = () => {
       trackId: params.id,
     },
   });
+  if (error) return <p>Something went wrong</p>;
 
-  return loading ? <p>Loading...</p> : <div>{JSON.stringify(data?.track)}</div>;
+  return loading ? (
+    <p>Loading...</p>
+  ) : (
+    <div>
+      {data?.track && (
+        <>
+          <h1>{data.track.author.name}</h1>
+          {data.track.modules.map((module) => (
+            <p>{module.title}</p>
+          ))}
+        </>
+      )}
+    </div>
+  );
 };
 export default TrackPage;
