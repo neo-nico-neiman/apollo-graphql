@@ -21,17 +21,32 @@ const TRACKS = gql`
 function App() {
   const { data, loading, error } = useQuery(TRACKS);
 
+  if (error) {
+    return <div>{error.message}</div>;
+  }
+
   return loading ? (
     <span>Loading...</span>
   ) : (
-    <div className="App">
+    <div style={{ display: "flex", flexWrap: "wrap" }}>
       {data?.tracksForHome?.map((track) => (
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            border: "1px black solid",
+            padding: "8px 16px",
+            margin: "8px",
+            width: "300px",
+          }}
+        >
           <img
             src={track.thumbnail}
             alt={track.author.name}
             width={200}
-            height={20}
+            height={150}
           />
           <span>{track.id}</span>
           <span>{track.title}</span>

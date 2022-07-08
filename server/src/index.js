@@ -1,23 +1,17 @@
 const { ApolloServer } = require("apollo-server");
 const typeDefs = require("./schema");
+const resolvers = require("./resolvers");
+const TrackAPI = require("./datasources/track-api");
 
-const mocks = {
-  Query: () => ({
-    tracksForHome: () => [...new Array(6)],
-  }),
-  Track: () => ({
-    id: () => "track 01",
-    title: () => "Astro Kitty, Space Explorer",
-    author: () => ({
-      name: "Grumpy Cat",
-      photo: "https://unsplash.com/photos/75715CVEJhI",
-    }),
-    thumbnail: () => "https://unsplash.com/photos/75715CVEJhI",
-    length: () => 1210,
-    modulesCount: () => 6,
-  }),
-};
-const server = new ApolloServer({ typeDefs, mocks: mocks });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  dataSources: () => {
+    return {
+      trackAPI: new TrackAPI(),
+    };
+  },
+});
 
 server
   .listen()
