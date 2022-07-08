@@ -31,6 +31,7 @@ function App() {
     <div style={{ display: "flex", flexWrap: "wrap" }}>
       {data?.tracksForHome?.map((track) => (
         <div
+          key={track.id}
           style={{
             display: "flex",
             flexDirection: "column",
