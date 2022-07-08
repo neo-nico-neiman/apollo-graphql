@@ -18,7 +18,7 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="track" element={<TrackPage />}></Route>
+          <Route path="track/:id" element={<TrackPage />}></Route>
         </Routes>
       </BrowserRouter>
     </ApolloProvider>

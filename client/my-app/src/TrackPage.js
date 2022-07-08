@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 
-const TRACK = gql`
+const GET_TRACKS = gql`
   query getTrack($trackId: ID!) {
     track(id: $trackId) {
       title
@@ -26,10 +26,12 @@ const TRACK = gql`
 `;
 
 const TrackPage = () => {
-  console.log(9);
   const params = useParams();
-  const { data, loading, error } = useQuery(TRACK, { trackId: params.trackId });
-  console.log({ params });
+  const { data, loading, error } = useQuery(GET_TRACKS, {
+    variables: {
+      trackId: params.id,
+    },
+  });
 
   return loading ? <p>Loading...</p> : <div>{JSON.stringify(data?.track)}</div>;
 };

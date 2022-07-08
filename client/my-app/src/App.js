@@ -1,5 +1,6 @@
 import "./App.css";
 import { gql, useQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
 
 const TRACKS = gql`
   query GetTracks {
@@ -30,32 +31,35 @@ function App() {
   ) : (
     <div style={{ display: "flex", flexWrap: "wrap" }}>
       {data?.tracksForHome?.map((track) => (
-        <div
-          key={track.id}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            border: "1px black solid",
-            padding: "8px 16px",
-            margin: "8px",
-            width: "300px",
-          }}
-        >
-          <img
-            src={track.thumbnail}
-            alt={track.author.name}
-            width={200}
-            height={150}
-          />
-          <span>{track.id}</span>
-          <span>{track.title}</span>
-          <span>
-            {`length: ${track.length} - module count: ${track.modulesCount}`}
-          </span>
-          <span>{track.author.name}</span>
-        </div>
+        <Link to={`/track/${track.id}`}>
+          {" "}
+          <div
+            key={track.id}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              border: "1px black solid",
+              padding: "8px 16px",
+              margin: "8px",
+              width: "300px",
+            }}
+          >
+            <img
+              src={track.thumbnail}
+              alt={track.author.name}
+              width={200}
+              height={150}
+            />
+            <span>{track.id}</span>
+            <span>{track.title}</span>
+            <span>
+              {`length: ${track.length} - module count: ${track.modulesCount}`}
+            </span>
+            <span>{track.author.name}</span>
+          </div>
+        </Link>
       ))}
     </div>
   );
