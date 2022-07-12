@@ -41,8 +41,9 @@ const TrackPage = () => {
       {data?.track && (
         <>
           <h1>{data.track.author.name}</h1>
-          {data.track.modules.map((module) => (
-            <p>{module.title}</p>
+          <p>{data.track.numberOfViews}</p>
+          {data.track.modules.map((module, index) => (
+            <p key={index}>{module.title}</p>
           ))}
         </>
       )}
