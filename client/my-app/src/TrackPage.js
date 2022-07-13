@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const GET_TRACKS = gql`
   query getTrack($trackId: ID!) {
@@ -45,6 +45,7 @@ const TrackPage = () => {
           {data.track.modules.map((module, index) => (
             <p key={index}>{module.title}</p>
           ))}
+          <Link to="/">Return home</Link>
         </>
       )}
     </div>
